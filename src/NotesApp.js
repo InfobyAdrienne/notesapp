@@ -11,11 +11,15 @@ class NotesApp {
   abbreviate(note) {
     return note.slice(0, 19);
   }
+
+  addNote(newNote) {
+    return this.notes.push(newNote);
+  }
   
 };
 
 
-// console.log(noteapp.join('\r\n'));
+// console.log(addNote(newNote);
 
 
 // for (let i = 0; )
