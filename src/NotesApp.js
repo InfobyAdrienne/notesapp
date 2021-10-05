@@ -1,9 +1,9 @@
 // class Note {
-let note = ['qwertyuiopasdfghjklz']
+let note = ['qwertyuiohhhhhhhhhh']
 
 function testNoteCharLengthBelow21(note) {
 
-  if (note.length > 20) {
+  if (note[0].length > 20) {
     throw new Error("Test note > 20 char");
   } else {
 		console.log('Test passed')
