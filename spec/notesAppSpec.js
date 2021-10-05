@@ -8,6 +8,18 @@ function testNoteCharLengthBelow21(note) {
 	}
 };
 
+let testExpect = (actual, expected) => {
+  if (actual === expected) {
+    console.log("Test Passed")
+  } else {
+    console.log("Test failed")
+  }
+};
+
+//let note = new Note()
+//  testExpect(note.length, 0);
+
+
 
 // function testNotesShowOnPage() {
 //   const notes = [];
@@ -47,4 +59,14 @@ let testExpect = (actual, expected) => {
   }
 };
 
+let note = new Note()
+  testExpect(
+    note.length,
+    0
+  );
+
 */
+
+
+// let note = ['qwertyuiohhhhhhhhhh']
+
