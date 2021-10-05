@@ -1,8 +1,16 @@
-class Circle {
-  constructor() {
-    this.radius = 10;
-  }
-}
+// class Note {
+let note = ['qwertyuiopasdfghjklz']
+
+function testNoteCharLengthBelow21(note) {
+
+  if (note.length > 20) {
+    throw new Error("Test note > 20 char");
+  } else {
+		console.log('Test passed')
+	}
+};
+
+console.log(testNoteCharLengthBelow21(note));
 
 // for (let i = 0; )
 // // for each note in the Notes array, print the first 20 characters
@@ -11,3 +19,8 @@ class Circle {
 
 // let note = 'Test note > 20 char. this string should fail';
 // testNoteCharLengthBelow21();
+
+
+
+
+

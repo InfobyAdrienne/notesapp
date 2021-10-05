@@ -1,36 +1,19 @@
 'use strict';
 
-function testCircleRadiusDefaultsTo10() {
-  const circle = new Circle();
-
-  if (circle.radius !== 10) {
-    throw new Error("Circle size is not 10");
+function testNoteCharLengthBelow21(note) {
+  if (note.length > 20) {
+    throw new Error("Test note > 20 char");
   } else {
-    console.log('Test passed')
-  }
-
+    console.log('Test passed');
+	}
 };
 
-testCircleRadiusDefaultsTo10();
 
 // function testNotesShowOnPage() {
 //   const notes = [];
 // if ()
 
 // }
-
-// function testNoteCharLengthBelow21() {
-//   const note = new Note();
-
-//   if (note.length > 20) {
-//     throw new Error("Test note > 20 char");
-//   } else {
-// 		console.log('Test passed')
-// 	}
-// };
-
-
-
 
 /*
 let note = 'Test note > 20 char. this string should fail';
@@ -40,6 +23,28 @@ let note = 'Test note > 20 char. this string should fail';
    console.log('Passed test')
  };
 */
+/*
+const sum = (a, b) => {
+	return a + b
+}
 
+const expect = (actual, expected) => {
+	if (actual === expected) {
+		console.log('Test Passed')
+	} else {
+		console.log('Test Failed')
+	}
+}
 
+expect(sum(3,5), 7) // => Test Failed
+expect(sum(1,9), 10) // => Test Passed
 
+let testExpect = (actual, expected) => {
+  if (actual === expected) {
+    console.log("Test Passed")
+  } else {
+    console.log("Test failed")
+  }
+};
+
+*/
