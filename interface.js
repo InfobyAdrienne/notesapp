@@ -1,10 +1,12 @@
+'use strict';
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  const notesapp = new NotesApp();
+  const notesApp = new NotesApp();
 
   document.querySelector('#add-note').addEventListener('click', () => {
-    notesapp.addNote();
-    document.querySelector('#all-notes').innerText = notesapp.allNotes();
+    notesApp.addNotes();
+    document.querySelector('#all-notes').innerText += notesApp;
   })
 
 })
