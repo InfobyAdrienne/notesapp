@@ -8,11 +8,11 @@ class NotesApp {
     return this.notes;
   }
 
-  abbreviate(note) {
-    return note.slice(0, 19);
+  abbreviateNote(note) {
+    return note.slice(0, 20);
   }
 
-  addNote(newNote) {
+  addNotes(newNote) {
     return this.notes.push(newNote);
   }
   
