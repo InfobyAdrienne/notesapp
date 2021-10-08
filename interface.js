@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     notesApp.addNotes(textBoxElement.value);
     document.getElementById("all-notes").innerHTML +=
       "<li>" + notesApp.abbreviateNote(textBoxElement.value) + "</li>";
+      document.getElementById("textbox").value=""
   }
 
   document.getElementById("all-notes").addEventListener("click", showFullNotes);
