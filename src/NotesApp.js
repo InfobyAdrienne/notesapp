@@ -15,7 +15,8 @@ class NotesApp {
   addNotes(newnote) {
     return this.notes.push(newnote); // change the new note into a string
   }
-  
+
+
 };
 
 

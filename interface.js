@@ -23,4 +23,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // window.location = "./full-note-display.html";  
     // document.getElementById("all-notes").innerHTML = notesApp.allNotes();
   }
+
 });
