@@ -9,12 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     myFunction();
   };
 
-  // let = getNotes = () => {
-  //   for (let i = 0; < notesApp.length; ++ i) {
-  //     notesApp.addNotes()
-  //   }
-  // }
-
   function myFunction() {
     notesApp.addNotes(textBoxElement.value);
     document.getElementById("all-notes").innerHTML +=
@@ -24,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("all-notes").addEventListener("click", showFullNotes);
 
   function showFullNotes() {
-    document.getElementById("all-notes").innerHTML = "<li>" + notesApp.allNotes() + "</li>";
+    document.getElementById("all-notes").innerHTML = "<li>" + notesApp.allNotes().join("<br><br>") + "</li>";
     // window.location = "./full-note-display.html";  
     // document.getElementById("all-notes").innerHTML = notesApp.allNotes();
   }
