@@ -12,8 +12,8 @@ class NotesApp {
     return note.slice(0, 20);
   }
 
-  addNotes(newNote) {
-    return this.notes.push(newNote);
+  addNotes(newnote) {
+    return this.notes.push(newnote); // change the new note into a string
   }
   
 };
