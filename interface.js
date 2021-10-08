@@ -9,16 +9,23 @@ document.addEventListener("DOMContentLoaded", () => {
     myFunction();
   };
 
+  // let = getNotes = () => {
+  //   for (let i = 0; < notesApp.length; ++ i) {
+  //     notesApp.addNotes()
+  //   }
+  // }
+
   function myFunction() {
     notesApp.addNotes(textBoxElement.value);
     document.getElementById("all-notes").innerHTML +=
-      "<li>" + textBoxElement.value.slice(0, 20) + "</li>";
+      "<li>" + notesApp.abbreviateNote(textBoxElement.value) + "</li>";
   }
 
   document.getElementById("all-notes").addEventListener("click", showFullNotes);
 
   function showFullNotes() {
-    window.location = "./full-note-display.html";  
+    document.getElementById("all-notes").innerHTML = "<li>" + notesApp.allNotes() + "</li>";
+    // window.location = "./full-note-display.html";  
     // document.getElementById("all-notes").innerHTML = notesApp.allNotes();
   }
 });
