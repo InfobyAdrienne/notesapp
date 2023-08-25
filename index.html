@@ -6,6 +6,7 @@
   <title>Notes App</title>
     <script src="src/NotesApp.js"></script>
     <script src="interface.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emojione@4.0.0/lib/js/emojione.min.js"></script>
   </head>
   <body>
     <div id="note-editor">
@@ -17,9 +18,11 @@
       <textarea rows="10" cols="42" type="text" id="textbox" name="textbox"></textarea>
       
     </form>
-<button class='button' id='add-note-button'>
+    <input type="button" value="Convert" id='add-note-button' onclick="convert()"/>
+ 
+    <!-- <button class='button' id='add-note-button' value="Convert" onclick="convert()">
       Add Note
-    </button>
+    </button> -->
     
     <h1>Notes here:</h1>
     <ul id=all-notes>
