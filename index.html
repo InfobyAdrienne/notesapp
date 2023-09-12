@@ -6,7 +6,7 @@
   <title>Notes App</title>
     <script src="src/NotesApp.js"></script>
     <script src="interface.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/emojione@4.0.0/lib/js/emojione.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.0.3/dist/index.min.js"></script>
   </head>
   <body>
     <div id="note-editor">
@@ -15,13 +15,17 @@
     <form>
       <label for="Note">Type Note:</label>
 
-      <textarea rows="10" cols="42" type="text" id="textbox" name="textbox"></textarea>
+      <textarea rows="10" cols="42" type="text" id="textbox"></textarea>
       
     </form>
-    <button class='button' id='add-note-button' value="Convert" onclick="convert()">
-      Add Note
-    </button>
-    
+
+    <button id='add-note-button' class='button'>Add Note</button>
+
+
+    <button id='emoji-button' class='button' value='emoji'>emoji</button>
+
+
+
     <h1>Notes here:</h1>
     <ul id=all-notes>
       <l ></li>

@@ -73,6 +73,10 @@ button:active {
   left: 1px;
 }
 
+#emoji-button {
+  width: 50px;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -87,3 +91,4 @@ ul {
   height: 250px;
   border-radius: 5px;
 }
+

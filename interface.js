@@ -1,20 +1,16 @@
 "use strict";
+import { EmojiButton } from '@joeattardi/emoji-button';
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const notesApp = new NotesApp();
 
   var textBoxElement = document.getElementById("textbox");
 
-  document.getElementById("add-note-button").addEventListener("click", myFunction);
-
-  // convert function for emojione - need to figure out how to make this work 
-  function convert() {
-  var input = document.getElementById('inputText').value;
-  var output = emojione.shortnameToImage(input);
-  document.getElementById('outputText').innerHTML = output; 
-  }
+  document.getElementById("add-note-button").addEventListener("click", newNote);
   
-  function myFunction() {
+  // being able to type text in the text area, click add and have it show up
+  function newNote() {
     notesApp.addNotes(textBoxElement.value);
     document.getElementById("all-notes").innerHTML +=
       "<ul>" + notesApp.abbreviateNote(textBoxElement.value) + "</ul>";
@@ -23,11 +19,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("all-notes").addEventListener("click", showFullNote);
 
-  // showing the full note 
+  // showing the full note in a new window
   function showFullNote() {
     document.getElementById("all-notes").innerHTML = "<ul>" + notesApp.allNotes().join("<br>") + "</ul>";
     // window.location.href = "./full-note-display.html";  
     // document.getElementById("all-notes").innerHTML = notesApp.allNotes();
   }
+
+  // Be able to select emojis using the emoji-button
+  // const button = document.getElementById('emoji-button');
+
+  // const picker = new EmojiButton();
+
+  // button.addEventListener("click", () => {
+  //   picker.togglePicker(button);
+  // });
+
+  // picker.on('Emoji', emoji => {
+  //   document.getElementById('textbox').value += emoji;
+  // });
+
+
+
+  const picker = new EmojiButton();
+const trigger = document.querySelector('.trigger');
+
+picker.on('emoji', selection => {
+  trigger.innerHTML = selection.emoji;
+});
+
+trigger.addEventListener('click', () => picker.togglePicker(trigger));
 
 });
