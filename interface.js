@@ -5,21 +5,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   var textBoxElement = document.getElementById("textbox");
 
-  document.getElementById("add-note-button").onclick = function () {
-    myFunction();
-  };
+  document.getElementById("add-note-button").addEventListener("click", myFunction);
 
+  // convert function for emojione - need to figure out how to make this work 
   function convert() {
-    var input = document.getElementById('inputText').value;
-    var output = emojione.shortnameToImage(input);
-    document.getElementById('outputText').innerHTML = output;
+  var input = document.getElementById('inputText').value;
+  var output = emojione.shortnameToImage(input);
+  document.getElementById('outputText').innerHTML = output; 
   }
-
+  
   function myFunction() {
     notesApp.addNotes(textBoxElement.value);
     document.getElementById("all-notes").innerHTML +=
       "<ul>" + notesApp.abbreviateNote(textBoxElement.value) + "</ul>";
-      document.getElementById("textbox").value=""
+    document.getElementById("textbox").value = ""
   }
 
   document.getElementById("all-notes").addEventListener("click", showFullNote);
