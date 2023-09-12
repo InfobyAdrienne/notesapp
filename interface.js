@@ -1,6 +1,6 @@
 "use strict";
-import { EmojiButton } from '@joeattardi/emoji-button';
 
+import('https://unpkg.com/@joeattardi/emoji-button@4.6.0/dist/index.js')
 
 document.addEventListener("DOMContentLoaded", () => {
   const notesApp = new NotesApp();
@@ -27,27 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Be able to select emojis using the emoji-button
-  // const button = document.getElementById('emoji-button');
-
-  // const picker = new EmojiButton();
-
-  // button.addEventListener("click", () => {
-  //   picker.togglePicker(button);
-  // });
-
-  // picker.on('Emoji', emoji => {
-  //   document.getElementById('textbox').value += emoji;
-  // });
-
-
-
   const picker = new EmojiButton();
-const trigger = document.querySelector('.trigger');
 
-picker.on('emoji', selection => {
-  trigger.innerHTML = selection.emoji;
-});
+  const button = document.getElementById('emoji-button');
 
-trigger.addEventListener('click', () => picker.togglePicker(trigger));
+  const textbox = document.getElementById('textbox');
 
+  picker.on('emoji', selection => {
+    // `selection` object has an `emoji` property containing the selected emoji
+    textbox.value += selection.emoji
+  });
+  
+  button.addEventListener('click', () => {
+    picker.togglePicker(button);
+  });
 });
