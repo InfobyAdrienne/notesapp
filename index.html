@@ -6,7 +6,7 @@
   <title>Notes App</title>
     <script src="src/NotesApp.js"></script>
     <script src="interface.js"></script>
-    
+
     <script type="module" defer>
       import { EmojiButton } from 'https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.0';
 
@@ -15,7 +15,7 @@
        const trigger = document.querySelector('.emoji-button');
 
        picker.on('emoji', selection => {
-         trigger.textContent = selection.emoji;
+         textbox.value += selection.emoji
        });
 
        trigger.addEventListener('click', () => picker.togglePicker(trigger));
