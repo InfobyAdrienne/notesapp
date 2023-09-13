@@ -6,8 +6,8 @@
   <title>Notes App</title>
     <script src="src/NotesApp.js"></script>
     <script src="interface.js"></script>
-
-    <script type="module" defer>
+  
+    <script type="module"  defer>
       import { EmojiButton } from 'https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.0';
 
        const picker = new EmojiButton({autoHide:false});
@@ -19,7 +19,8 @@
        });
 
        trigger.addEventListener('click', () => picker.togglePicker(trigger));
-   </script>
+    </script>
+</head>
 
   <body>
     
@@ -35,7 +36,6 @@
 
     <button id='add-note-button' class='button'>Add Note</button>
 
-    
     <button id='emoji-button' class="emoji-button" value='emoji'>emoji</button>
 
     <h1>Notes here:</h1>
