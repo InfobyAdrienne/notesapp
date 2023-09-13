@@ -1,7 +1,5 @@
 "use strict";
 
-import('https://unpkg.com/@joeattardi/emoji-button@4.6.0/dist/index.js')
-
 document.addEventListener("DOMContentLoaded", () => {
   const notesApp = new NotesApp();
 
@@ -36,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   picker.on('emoji', selection => {
     // `selection` object has an `emoji` property containing the selected emoji
     textbox.value += selection.emoji
+    console.log(selection.emoji)
   });
   
   button.addEventListener('click', () => {

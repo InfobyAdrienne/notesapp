@@ -1,9 +1,5 @@
 {
   "scripts": {
     "start": "node interface.js"
-  },
-
-  "dependencies": {
-    "@joeattardi/emoji-button": "^4.6.4"
   }
 }
