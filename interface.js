@@ -5,23 +5,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   var textBoxElement = document.getElementById("textbox");
 
-  document.getElementById("add-note-button").onclick = function () {
-    myFunction();
-  };
+  document.getElementById("add-note-button").addEventListener("click", newNote);
 
-  function myFunction() {
+  // being able to type text in the text area, click add and have it show up
+  function newNote() {
     notesApp.addNotes(textBoxElement.value);
     document.getElementById("all-notes").innerHTML +=
-      "<li>" + notesApp.abbreviateNote(textBoxElement.value) + "</li>";
-      document.getElementById("textbox").value=""
+      "<ul>" + notesApp.abbreviateNote(textBoxElement.value) + "</ul>";
+    document.getElementById("textbox").value = "";
   }
 
-  document.getElementById("all-notes").addEventListener("click", showFullNotes);
+  document.getElementById("all-notes").addEventListener("click", showFullNote);
 
-  function showFullNotes() {
-    document.getElementById("all-notes").innerHTML = "<li>" + notesApp.allNotes().join("<br><br>") + "</li>";
-    // window.location = "./full-note-display.html";  
+  // showing the full note in a new window
+  function showFullNote() {
+    document.getElementById("all-notes").innerHTML =
+      "<ul>" + notesApp.allNotes().join("<br>") + "</ul>";
+    // window.location.href = "./full-note-display.html";
     // document.getElementById("all-notes").innerHTML = notesApp.allNotes();
   }
-
 });
