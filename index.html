@@ -10,7 +10,7 @@
     <script type="module"  defer>
       import { EmojiButton } from 'https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.0';
 
-       const picker = new EmojiButton({autoHide:false});
+       const picker = new EmojiButton({autoHide:true});
 
        const trigger = document.querySelector('.emoji-button');
 
@@ -22,22 +22,26 @@
     </script>
 </head>
 
+<header>
+  <h2>Welcome to your notes</h2>
+</header>
+
   <body>
     
     <div id="note-editor">
-    
-      <h1>Welcome to your notes</h1>
+      <!-- <h1>Welcome to your notes</h1> -->
     <form>
-      <label for="Note">Type Note:</label>
 
-      <textarea rows="10" cols="42" type="text" id="textbox" name="textbox"></textarea>
+      <textarea rows="10" cols="42" type="text" id="textbox" name="textbox" placeholder="Type your note here..."></textarea>
       
     </form>
+    <div id="container">
 
     <button id='add-note-button' class='button'>Add Note</button>
 
-    <button id='emoji-button' class="emoji-button" value='emoji'>emoji</button>
+    <button id='emoji-button' class="emoji-button" value='emoji'>Emoji</button>
 
+  </div>
     <h1>Notes here:</h1>
     <ul id='all-notes'>
       <l ></li>
