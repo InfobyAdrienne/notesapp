@@ -7,13 +7,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("add-note-button").addEventListener("click", newNote);
 
-  // being able to type text in the text area, click add and have it show up
   function newNote() {
-    notesApp.addNotes(textBoxElement.value);
-    document.getElementById("all-notes").innerHTML +=
-      "<ul>" + notesApp.abbreviateNote(textBoxElement.value) + "</ul>";
+    let containerDiv = document.querySelector("ul");
+    let notesContainer = document.createElement("li");
+  
+    containerDiv.appendChild(notesContainer);
+    
+    let entry = document.getElementById('textbox').value 
+    
+    let entryDetails = 
+      `<li>
+      <a href="#">
+          <p id="single-sticky-note">${entry}</p>
+      </a>
+      </li>`
+    
+    containerDiv.insertAdjacentHTML('beforeend', entryDetails);
     document.getElementById("textbox").value = "";
   }
+
 
   document.getElementById("all-notes").addEventListener("click", showFullNote);
 

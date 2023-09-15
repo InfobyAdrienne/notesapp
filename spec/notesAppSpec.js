@@ -16,8 +16,8 @@ let testExpect = (actual, expected) => {
     testExpect(abbreviateNote[0].slice(0, 20), "Test string Test 000");
 
   notesApp = new NotesApp();
-    notesApp.addNotes("Learn more JS");
-    notesApp.addNotes("Learn more Ruby");
+    notesApp.addNote("Learn more JS");
+    notesApp.addNote("Learn more Ruby");
 
   let AllNotes = notesApp.allNotes()
   testExpect(AllNotes[0], "Learn more JS");

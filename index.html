@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
   <title>Notes App</title>
     <script src="src/NotesApp.js"></script>
-    <script src="interface.js"></script>
+    <script src="interface.js" defer></script>
   
     <script type="module"  defer>
       import { EmojiButton } from 'https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.0';
@@ -42,34 +42,13 @@
     <button id='emoji-button' class="emoji-button" value='emoji'>Emoji</button>
 
   </div>
+
+  
+  <div id="sticky-note-container">
     <h1>Notes here:</h1>
       <ul id='all-notes'>
-        <li>
-          <a href="#">
-            <p>Text Content #1</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <p>Text Content #2</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <p>Text Content #3</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <p>Text Content #4</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <p>Text Content #5</p>
-          </a>
-        </li>
       </ul>
+    </div>
 
     
 </body>
