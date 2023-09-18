@@ -7,10 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("add-note-button").addEventListener("click", newNote);
 
+  // randomnumber for key id of note
+
   function newNote() {
     let containerDiv = document.querySelector("ul");
     let notesContainer = document.createElement("li");
-  
+
+     // random number for id of note
+    var randomid = Math.floor((Math.random() * 100000000) + 1)
+
     containerDiv.appendChild(notesContainer);
     
     let entry = document.getElementById('textbox').value 
@@ -24,6 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
     
     containerDiv.insertAdjacentHTML('beforeend', entryDetails);
     document.getElementById("textbox").value = "";
+
+    // Save the name in localStorage
+    localStorage.setItem(randomid, entry);
   }
 
 
