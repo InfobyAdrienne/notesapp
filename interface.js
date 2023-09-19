@@ -34,9 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // random number for id of note
     var id = Math.floor((Math.random() * 100000000) + 1);
     
-    // Save the note in localStorage witgh the key value of id
+    // Save the note in localStorage with the key value of id
     localStorage.setItem(id, JSON.stringify(noteObject));
   }
+
+  //TO-DO: see the existing notes when the page is refreshed 
+  // function showAllNotes() {
+
+  //   var data = JSON.parse(localStorage.getItem(noteObject));
+
+  //   console.log(data)
+  // }
+
+
+
 
   document.getElementById("all-notes").addEventListener("click", showFullNote);
 
