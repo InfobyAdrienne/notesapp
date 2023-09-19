@@ -1,25 +1,26 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const notesApp = new NotesApp();
+  // const notesApp = new NotesApp();
 
-  var textBoxElement = document.getElementById("textbox");
-
+  var entryBox = document.getElementById("textbox");
+    
   document.getElementById("add-note-button").addEventListener("click", newNote);
 
-  // randomnumber for key id of note
-
+  // function for creating a new note, storing it to localStorage, 
+  // and displaying it on the page
   function newNote() {
     let containerDiv = document.querySelector("ul");
     let notesContainer = document.createElement("li");
-
-     // random number for id of note
-    var randomid = Math.floor((Math.random() * 100000000) + 1)
-
     containerDiv.appendChild(notesContainer);
-    
-    let entry = document.getElementById('textbox').value 
-    
+
+    let entry = entryBox.value;
+
+    var noteObject = {
+      value: entry,
+      timestamp: new Date().getTime()
+    };
+
     let entryDetails = 
       `<li>
       <a href="#">
@@ -30,10 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
     containerDiv.insertAdjacentHTML('beforeend', entryDetails);
     document.getElementById("textbox").value = "";
 
-    // Save the name in localStorage
-    localStorage.setItem(randomid, entry);
+    // random number for id of note
+    var id = Math.floor((Math.random() * 100000000) + 1);
+    
+    // Save the note in localStorage witgh the key value of id
+    localStorage.setItem(id, JSON.stringify(noteObject));
   }
-
 
   document.getElementById("all-notes").addEventListener("click", showFullNote);
 
