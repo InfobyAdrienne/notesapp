@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let entryDetails = 
       `<li>
       <a href="#">
-          <p id="single-sticky-note">${entry}</p>
+          <p id="single-sticky-note">${entry.slice(0, 17).concat("...")}</p>
       </a>
       </li>`
     
@@ -38,16 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(id, JSON.stringify(noteObject));
   }
 
-  //TO-DO: see the existing notes when the page is refreshed 
+  // TO-DO: see the existing notes when the page is refreshed 
   // function showAllNotes() {
 
   //   var data = JSON.parse(localStorage.getItem(noteObject));
 
   //   console.log(data)
   // }
-
-
-
 
   document.getElementById("all-notes").addEventListener("click", showFullNote);
 
