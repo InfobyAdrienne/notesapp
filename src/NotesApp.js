@@ -7,7 +7,7 @@ class NotesApp {
   // showing all the notes 
   allNotes() {
     return this.notes;
-    // return JSON.parse(localStorage.getItem("note") || "");
+    return JSON.parse(localStorage.getItem("note") || "");
   }
 
   // showing the abbreviated notes 
@@ -30,4 +30,3 @@ class NotesApp {
 // for (let i = 0; )
 
 // array1.forEach(element => console.log(element));
-
