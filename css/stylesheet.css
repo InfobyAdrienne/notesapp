@@ -181,3 +181,10 @@ ul li a:hover,ul li a:focus{
   position:relative;
   z-index:5;
 }
+
+.gg-trash {
+  position: absolute; 
+  left: 95%; 
+  top: 55%;
+  color: #fff;
+}

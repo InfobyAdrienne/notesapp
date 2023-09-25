@@ -72,15 +72,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let entryDetails = `<li>
         <a href="#">
-            <p id="single-sticky-note">
-      ${element.value}
-        </p>
-        </a>
-        </li>`;
+          <p id="single-sticky-note">
+          ${element.value}
+          </p>
+          <i class="gg-trash"></i>
+          </a>
+      </li>`;
 
       containerDiv.insertAdjacentHTML("beforeend", entryDetails);
       document.getElementById("textbox").value = "";
     });
+
+    document
+      .getElementById("delete-note-button")
+      .addEventListener("click", deleteNote);
+
+    function deleteNote() {}
 
     // .slice(0, 17).concat("...")
 
