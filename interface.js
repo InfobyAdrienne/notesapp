@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Display all the notes from localStorage
   function showAllNotes() {
-    let notes = JSON.parse(localStorage.getItem("data"));
+    let notes = JSON.parse(localStorage.getItem("data")).reverse();
 
     // TO-DO: figure out how to map through an object of arrays
     notes.forEach((element) => {
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </a>
       </li>`;
 
-      containerDiv.insertAdjacentHTML("beforeend", entryDetails);
+      containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
       document.getElementById("textbox").value = "";
     });
 
