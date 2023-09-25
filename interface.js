@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // random number for id of note
   var id = Math.floor(Math.random() * 100000000 + 1);
 
-  let notesData = JSON.parse(localStorage.getItem("data")) || [];
+  // if there are no notes, notesData will be an empty array
+  var notesData = JSON.parse(localStorage.getItem("data")) || [];
 
   document.getElementById("add-note-button").addEventListener("click", newNote);
 
@@ -22,43 +23,66 @@ document.addEventListener("DOMContentLoaded", () => {
       timestamp: new Date().getTime(),
     };
 
+    console.log(typeof noteObject);
+
     notesData.push(noteObject);
 
-    // Save the note in localStorage with the key value of id
+    // Save the new note in localStorage
     localStorage.setItem("data", JSON.stringify(notesData));
 
-    showAllNotes();
+    displayNewNote();
   }
 
-  // function to display all the notes from localStorage
-  function showAllNotes() {
-    let notes = localStorage.getItem("data");
+  // After a new note has been added to localStorage,
+  // display the new note in addition to the already stored notes
+  function displayNewNote() {
+    let notes = JSON.parse(localStorage.getItem("data"));
 
-    console.log(typeof notes);
-    console.log(notes);
+    let lastElement = notes[notes.length - 1];
+
+    console.log(lastElement.value);
 
     let containerDiv = document.querySelector("ul");
     let notesContainer = document.createElement("li");
     containerDiv.appendChild(notesContainer);
-    
-    // TO-DO: figure out how to map through an object of arrays 
-    const notesbyValues = notes.map((item) => {
-      return item.value
-    });
-
-    console.log(notesbyValues);
 
     let entryDetails = `<li>
       <a href="#">
           <p id="single-sticky-note">
-     ${notesbyValues}
+    ${lastElement.value}
       </p>
       </a>
       </li>`;
 
-    // .slice(0, 17).concat("...")
     containerDiv.insertAdjacentHTML("beforeend", entryDetails);
     document.getElementById("textbox").value = "";
+  }
+
+  // Display all the notes from localStorage
+  function showAllNotes() {
+    let notes = JSON.parse(localStorage.getItem("data"));
+
+    // TO-DO: figure out how to map through an object of arrays
+    notes.forEach((element) => {
+      console.log(element.value);
+
+      let containerDiv = document.querySelector("ul");
+      let notesContainer = document.createElement("li");
+      containerDiv.appendChild(notesContainer);
+
+      let entryDetails = `<li>
+        <a href="#">
+            <p id="single-sticky-note">
+      ${element.value}
+        </p>
+        </a>
+        </li>`;
+
+      containerDiv.insertAdjacentHTML("beforeend", entryDetails);
+      document.getElementById("textbox").value = "";
+    });
+
+    // .slice(0, 17).concat("...")
 
     // notesObj.forEach(function (element, index) {
     //   html += `
