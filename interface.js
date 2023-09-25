@@ -47,14 +47,15 @@ document.addEventListener("DOMContentLoaded", () => {
     containerDiv.appendChild(notesContainer);
 
     let entryDetails = `<li>
-      <a href="#">
+        <a href="#">
           <p id="single-sticky-note">
-    ${lastElement.value}
-      </p>
-      </a>
+          ${lastElement.value}
+          </p>
+          <i id='delete-note-button' class="gg-trash"></i>
+          </a>
       </li>`;
 
-    containerDiv.insertAdjacentHTML("beforeend", entryDetails);
+    containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
     document.getElementById("textbox").value = "";
   }
 
@@ -70,24 +71,26 @@ document.addEventListener("DOMContentLoaded", () => {
       let notesContainer = document.createElement("li");
       containerDiv.appendChild(notesContainer);
 
-      let entryDetails = `<li>
+      let entryDetails = `
+      <li>
         <a href="#">
           <p id="single-sticky-note">
           ${element.value}
           </p>
-          <i class="gg-trash"></i>
+          <i id="delete-note" class="fa fa-trash-o"></i>
           </a>
       </li>`;
 
-      containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
+      containerDiv.insertAdjacentHTML("beforeend", entryDetails);
       document.getElementById("textbox").value = "";
     });
 
-    document
-      .getElementById("delete-note-button")
-      .addEventListener("click", deleteNote);
+    document.getElementById("delete-note").addEventListener("click", deleteNote);
 
-    function deleteNote() {}
+    function deleteNote() {
+
+      
+    }
 
     // .slice(0, 17).concat("...")
 
