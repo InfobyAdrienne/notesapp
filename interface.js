@@ -11,7 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("add-note-button").addEventListener("click", newNote);
 
-  showAllNotes();
+  // if there are no notes send a message to user 
+  // TO-DO: create a pop up telling user to create a note 
+  if (notesData.length == 0) {
+    console.log("create your first note")
+  } else {
+    showAllNotes();
+  }
 
   // function for creating a new note, storing it to localStorage
   function newNote() {
@@ -23,9 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
       timestamp: new Date().getTime(),
     };
 
+    console.log("---NEW NOTE---")
     console.log(typeof noteObject);
 
     notesData.push(noteObject);
+
+    console.log(notesData)
 
     // Save the new note in localStorage
     localStorage.setItem("data", JSON.stringify(notesData));
@@ -39,8 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let notes = JSON.parse(localStorage.getItem("data"));
 
     let lastElement = notes[notes.length - 1];
-
-    console.log(lastElement.value);
 
     let containerDiv = document.querySelector("ul");
     let notesContainer = document.createElement("li");
@@ -64,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let notes = JSON.parse(localStorage.getItem("data")).reverse();
 
     notes.forEach((element) => {
-      console.log(element.value);
 
       let containerDiv = document.querySelector("ul");
       let notesContainer = document.createElement("li");
@@ -110,7 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // getElementsByClassName returns an array of elements
   var deleteIcons = document.getElementsByClassName("fa fa-trash-o")
 
-  // iterate over the array of elements to add an event to each one 
+  // iterate over the array of elements to add an event to each one
+  // figure out event listener for dynamically created element 
   for (var i = 0; i < deleteIcons.length; i++) {
     deleteIcons[i].addEventListener("click", deleteNote);
   }
