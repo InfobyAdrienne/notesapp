@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p id="single-sticky-note">
           ${lastElement.value}
           </p>
-          <i id='delete-note-button' class="gg-trash"></i>
+          <i id="delete-note" class="fa fa-trash-o"></i>
           </a>
       </li>`;
 
@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function showAllNotes() {
     let notes = JSON.parse(localStorage.getItem("data")).reverse();
 
-    // TO-DO: figure out how to map through an object of arrays
     notes.forEach((element) => {
       console.log(element.value);
 
@@ -84,13 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       containerDiv.insertAdjacentHTML("beforeend", entryDetails);
       document.getElementById("textbox").value = "";
     });
-
-    document.getElementById("delete-note").addEventListener("click", deleteNote);
-
-    function deleteNote() {
-
-      
-    }
+  }
 
     // .slice(0, 17).concat("...")
 
@@ -113,5 +106,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // } else {
     //   notesElm.innerHTML = `No Notes Yet! Add a note using the form above.`;
     // }
+
+  // getElementsByClassName returns an array of elements
+  var deleteIcons = document.getElementsByClassName("fa fa-trash-o")
+
+  // iterate over the array of elements to add an event to each one 
+  for (var i = 0; i < deleteIcons.length; i++) {
+    deleteIcons[i].addEventListener("click", deleteNote);
   }
+
+  function deleteNote() {
+    console.log("clicked");
+  }
+
 });
