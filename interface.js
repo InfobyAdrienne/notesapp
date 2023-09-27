@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // After a new note has been added to localStorage,
   // display the new note in addition to the already stored notes
+
+  
   function displayNewNote() {
     let notes = JSON.parse(localStorage.getItem("data"));
 
@@ -51,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let containerDiv = document.querySelector("ul");
     let notesContainer = document.createElement("li");
+    
     containerDiv.appendChild(notesContainer);
 
     let entryDetails = `<li>
@@ -64,7 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
     document.getElementById("textbox").value = "";
+
+    dynamicDeleteIcon()
   }
+
 
   // Display all the notes from localStorage
   function showAllNotes() {
@@ -89,41 +95,22 @@ document.addEventListener("DOMContentLoaded", () => {
       containerDiv.insertAdjacentHTML("beforeend", entryDetails);
       document.getElementById("textbox").value = "";
     });
+
+    dynamicDeleteIcon()
   }
 
-    // .slice(0, 17).concat("...")
-
-    // notesObj.forEach(function (element, index) {
-    //   html += `
-    //       <div class="note">
-    //           <p class="note-counter">Note ${index + 1}</p>
-    //           <h3 class="note-title"> ${element.title} </h3>
-    //           <p class="note-text"> ${element.text}</p>
-    //           <button id="${index}"onclick="deleteNote(this.id)" class="note-btn">Delete Note</button>
-    //           <button id="${index}"onclick="editNote(this.id)" class="note-btn edit-btn">Edit Note</button>
-    //       </div>
-    //           `;
-    // });
-
-    // let notesElm = document.getElementById("notes");
-
-    // if (notesObj.length != 0) {
-    //   notesElm.innerHTML = html;
-    // } else {
-    //   notesElm.innerHTML = `No Notes Yet! Add a note using the form above.`;
-    // }
-
   // getElementsByClassName returns an array of elements
-  var deleteIcons = document.getElementsByClassName("fa fa-trash-o")
+  function dynamicDeleteIcon() {
+    var deleteIcons = document.getElementsByClassName("fa fa-trash-o")
 
   // iterate over the array of elements to add an event to each one
   // figure out event listener for dynamically created element 
-  for (var i = 0; i < deleteIcons.length; i++) {
-    deleteIcons[i].addEventListener("click", deleteNote);
-  }
+    for (var i = 0; i < deleteIcons.length; i++) {
+      deleteIcons[i].addEventListener("click", deleteNote);
+    }
+  };
 
   function deleteNote() {
     console.log("clicked");
   }
-
 });
