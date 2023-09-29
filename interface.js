@@ -56,14 +56,17 @@ document.addEventListener("DOMContentLoaded", () => {
     
     containerDiv.appendChild(notesContainer);
 
-    let entryDetails = `<li>
+    let entryDetails = `
+    <div id=${lastElement.id}>
+    <li>
         <a href="#">
           <p id="single-sticky-note">
           ${lastElement.value}
           </p>
           <i id="delete-note" class="fa fa-trash-o"></i>
           </a>
-      </li>`;
+      </li>
+      </div>`;
 
     containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
     document.getElementById("textbox").value = "";
@@ -83,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       containerDiv.appendChild(notesContainer);
 
       let entryDetails = `
+      <div id=${element.id}>
       <li>
         <a href="#">
           <p id="single-sticky-note">
@@ -90,7 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </p>
           <i id="delete-note" class="fa fa-trash-o"></i>
           </a>
-      </li>`;
+      </li>
+      </div>`;
 
       containerDiv.insertAdjacentHTML("beforeend", entryDetails);
       document.getElementById("textbox").value = "";
@@ -103,14 +108,25 @@ document.addEventListener("DOMContentLoaded", () => {
   function dynamicDeleteIcon() {
     var deleteIcons = document.getElementsByClassName("fa fa-trash-o")
 
+
+  
   // iterate over the array of elements to add an event to each one
   // figure out event listener for dynamically created element 
     for (var i = 0; i < deleteIcons.length; i++) {
       deleteIcons[i].addEventListener("click", deleteNote);
+      
     }
   };
 
   function deleteNote() {
     console.log("clicked");
+    let notes = JSON.parse(localStorage.getItem("data"))
+
+    console.log(notes)
+
+    let index = notes.findIndex(item => item.id === 41574665);
+
+    // console.log(index)
+
   }
 });
