@@ -29,9 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
       timestamp: new Date().getTime(),
     };
 
-    console.log("---NEW NOTE---")
-    console.log(typeof noteObject);
-
     notesData.push(noteObject);
 
     console.log(notesData)
@@ -63,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <p id="single-sticky-note">
           ${lastElement.value}
           </p>
-          <i id="delete-note" class="fa fa-trash-o"></i>
-          </a>
+          <i class="fa fa-trash"></i>
+      </a>
       </li>
       </div>`;
 
@@ -86,14 +83,16 @@ document.addEventListener("DOMContentLoaded", () => {
       containerDiv.appendChild(notesContainer);
 
       let entryDetails = `
-      <div id=${element.id}>
+      <div>
       <li>
         <a href="#">
           <p id="single-sticky-note">
           ${element.value}
           </p>
-          <i id="delete-note" class="fa fa-trash-o"></i>
-          </a>
+          <div>
+          <i class="fa fa-trash" id=${element.id}></i>
+          </div>
+        </a>
       </li>
       </div>`;
 
@@ -104,29 +103,37 @@ document.addEventListener("DOMContentLoaded", () => {
     dynamicDeleteIcon()
   }
 
+  var noteId = [];
   // getElementsByClassName returns an array of elements
   function dynamicDeleteIcon() {
-    var deleteIcons = document.getElementsByClassName("fa fa-trash-o")
-
-
-  
+    var deleteIcons = document.getElementsByClassName("fa fa-trash")
   // iterate over the array of elements to add an event to each one
-  // figure out event listener for dynamically created element 
     for (var i = 0; i < deleteIcons.length; i++) {
-      deleteIcons[i].addEventListener("click", deleteNote);
-      
+      deleteIcons[i].addEventListener("click", (event) => {
+        noteId.push(event.target.id)
+        deleteNote()
+      });
     }
   };
 
+
+
   function deleteNote() {
     console.log("clicked");
-    let notes = JSON.parse(localStorage.getItem("data"))
 
-    console.log(notes)
+   noteId = Number(noteId.join(''));
 
-    let index = notes.findIndex(item => item.id === 41574665);
+    console.log(noteId)
 
-    // console.log(index)
+// TO-DO: the id of the clicked note can be found
+// Need a way to getItem and removeItem from local storage using the found id 
+    
+    noteId = [];
 
-  }
+    // let notes = JSON.parse(localStorage.getItem("data", id));
+
+    // showAllNotes()
+  };
+
+
 });

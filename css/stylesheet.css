@@ -170,15 +170,15 @@ ul li a:hover,ul li a:focus{
   z-index:5;
 }
 
-#delete-note {
+.fa-trash {
   position: absolute; 
   left: 85%; 
   top: 80%;
   color: #fff;
-  font-size:28px
+  font-size:28px !important;
 }
 
-#delete-note:hover {
+.fa-trash:hover {
   color: #A51C30;
 }
 
