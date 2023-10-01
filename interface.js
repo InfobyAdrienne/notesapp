@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   var entryBox = document.getElementById("textbox");
 
   // random number for id of note
-  var id = Math.floor(Math.random() * 100000000 + 1);
+  // var id = Math.floor(Math.random() * 100000000 + 1);
+  const idGenerator = () =>{
+    return Math.floor(Math.random() * 1000000)
+}
 
   // if there are no notes, notesData will be an empty array
   var notesData = JSON.parse(localStorage.getItem("data")) || [];
@@ -25,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var noteObject = {
       value: entry,
-      id: id,
+      id: idGenerator(),
       timestamp: new Date().getTime(),
     };
 
@@ -83,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       containerDiv.appendChild(notesContainer);
 
       let entryDetails = `
-      <div>
+      <div id="notes">
       <li>
         <a href="#">
           <p id="single-sticky-note">
@@ -111,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (var i = 0; i < deleteIcons.length; i++) {
       deleteIcons[i].addEventListener("click", (event) => {
         noteId.push(event.target.id)
+        console.log(noteId);
         deleteNote()
       });
     }
@@ -120,20 +124,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function deleteNote() {
     console.log("clicked");
-
-   noteId = Number(noteId.join(''));
+    
+    noteId = Number(noteId.join(''));
 
     console.log(noteId)
 
-// TO-DO: the id of the clicked note can be found
-// Need a way to getItem and removeItem from local storage using the found id 
-    
+    // TO-DO: the id of the clicked note can be found
+    // Need a way to getItem and removeItem from local storage using the found id 
+
+    var notes = JSON.parse(localStorage.getItem("data"));
+
+    console.log(notes)
+
+    var noteToDelete = notes.find(item => item.id === noteId);
+
+    console.log(noteToDelete)
+
+    var index = notes.indexOf(noteToDelete);
+
+    console.log(index) 
+
+    //remove object with that index from array
+
+    notes.splice(index, 1);
+
+    localStorage.setItem('data', JSON.stringify(notes));
+
+    showAllNotes()
+
     noteId = [];
 
-    // let notes = JSON.parse(localStorage.getItem("data", id));
+    location.reload()
 
-    // showAllNotes()
-  };
-
+  }
 
 });
