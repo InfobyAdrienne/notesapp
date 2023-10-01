@@ -4,14 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
   var entryBox = document.getElementById("textbox");
 
   // random number for id of note
-  var id = Math.floor(Math.random() * 100000000 + 1);
+  // var id = Math.floor(Math.random() * 100000000 + 1);
+  const idGenerator = () =>{
+    return Math.floor(Math.random() * 1000000)
+}
 
   // if there are no notes, notesData will be an empty array
   var notesData = JSON.parse(localStorage.getItem("data")) || [];
 
   document.getElementById("add-note-button").addEventListener("click", newNote);
 
-  showAllNotes();
+  // if there are no notes send a message to user 
+  // TO-DO: create a pop up telling user to create a note 
+  if (notesData.length == 0) {
+    console.log("create your first note")
+  } else {
+    showAllNotes();
+  }
 
   // function for creating a new note, storing it to localStorage
   function newNote() {
@@ -19,13 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var noteObject = {
       value: entry,
-      id: id,
+      id: idGenerator(),
       timestamp: new Date().getTime(),
     };
 
-    console.log(typeof noteObject);
-
     notesData.push(noteObject);
+
+    console.log(notesData)
 
     // Save the new note in localStorage
     localStorage.setItem("data", JSON.stringify(notesData));
@@ -35,73 +44,118 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // After a new note has been added to localStorage,
   // display the new note in addition to the already stored notes
+
+  
   function displayNewNote() {
     let notes = JSON.parse(localStorage.getItem("data"));
 
     let lastElement = notes[notes.length - 1];
 
-    console.log(lastElement.value);
-
     let containerDiv = document.querySelector("ul");
     let notesContainer = document.createElement("li");
+    
     containerDiv.appendChild(notesContainer);
 
-    let entryDetails = `<li>
-      <a href="#">
+    let entryDetails = `
+    <div id=${lastElement.id}>
+    <li>
+        <a href="#">
           <p id="single-sticky-note">
-    ${lastElement.value}
-      </p>
+          ${lastElement.value}
+          </p>
+          <i class="fa fa-trash"></i>
       </a>
-      </li>`;
+      </li>
+      </div>`;
 
-    containerDiv.insertAdjacentHTML("beforeend", entryDetails);
+    containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
     document.getElementById("textbox").value = "";
+
+    dynamicDeleteIcon()
   }
+
 
   // Display all the notes from localStorage
   function showAllNotes() {
-    let notes = JSON.parse(localStorage.getItem("data"));
+    let notes = JSON.parse(localStorage.getItem("data")).reverse();
 
-    // TO-DO: figure out how to map through an object of arrays
     notes.forEach((element) => {
-      console.log(element.value);
 
       let containerDiv = document.querySelector("ul");
       let notesContainer = document.createElement("li");
       containerDiv.appendChild(notesContainer);
 
-      let entryDetails = `<li>
+      let entryDetails = `
+      <div id="notes">
+      <li>
         <a href="#">
-            <p id="single-sticky-note">
-      ${element.value}
-        </p>
+          <p id="single-sticky-note">
+          ${element.value}
+          </p>
+          <div>
+          <i class="fa fa-trash" id=${element.id}></i>
+          </div>
         </a>
-        </li>`;
+      </li>
+      </div>`;
 
-      containerDiv.insertAdjacentHTML("beforeend", entryDetails);
+      containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
       document.getElementById("textbox").value = "";
     });
 
-    // .slice(0, 17).concat("...")
-
-    // notesObj.forEach(function (element, index) {
-    //   html += `
-    //       <div class="note">
-    //           <p class="note-counter">Note ${index + 1}</p>
-    //           <h3 class="note-title"> ${element.title} </h3>
-    //           <p class="note-text"> ${element.text}</p>
-    //           <button id="${index}"onclick="deleteNote(this.id)" class="note-btn">Delete Note</button>
-    //           <button id="${index}"onclick="editNote(this.id)" class="note-btn edit-btn">Edit Note</button>
-    //       </div>
-    //           `;
-    // });
-
-    // let notesElm = document.getElementById("notes");
-
-    // if (notesObj.length != 0) {
-    //   notesElm.innerHTML = html;
-    // } else {
-    //   notesElm.innerHTML = `No Notes Yet! Add a note using the form above.`;
-    // }
+    dynamicDeleteIcon()
   }
+
+  var noteId = [];
+  // getElementsByClassName returns an array of elements
+  function dynamicDeleteIcon() {
+    var deleteIcons = document.getElementsByClassName("fa fa-trash")
+  // iterate over the array of elements to add an event to each one
+    for (var i = 0; i < deleteIcons.length; i++) {
+      deleteIcons[i].addEventListener("click", (event) => {
+        noteId.push(event.target.id)
+        console.log(noteId);
+        deleteNote()
+      });
+    }
+  };
+
+
+
+  function deleteNote() {
+    console.log("clicked");
+    
+    noteId = Number(noteId.join(''));
+
+    console.log(noteId)
+
+    // TO-DO: the id of the clicked note can be found
+    // Need a way to getItem and removeItem from local storage using the found id 
+
+    var notes = JSON.parse(localStorage.getItem("data"));
+
+    console.log(notes)
+
+    var noteToDelete = notes.find(item => item.id === noteId);
+
+    console.log(noteToDelete)
+
+    var index = notes.indexOf(noteToDelete);
+
+    console.log(index) 
+
+    //remove object with that index from array
+
+    notes.splice(index, 1);
+
+    localStorage.setItem('data', JSON.stringify(notes));
+
+    showAllNotes()
+
+    noteId = [];
+
+    location.reload()
+
+  }
+
 });

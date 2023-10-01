@@ -58,18 +58,6 @@ p {
   padding: 0 20px;
 }
 
-#note-editor {
-  padding-bottom: 12px;
-  margin-bottom: 48px;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  opacity: 1;
-  transition: all 0.25s ease-out;
-}
-
-#note-editor.hide {
-  opacity: 0;
-}
-
 textarea {
   display: block;
   margin-left: auto;
@@ -86,7 +74,7 @@ textarea.is-empty {
   text-align: center;
 }
 
-button {
+#add-note-button, #emoji-button {
   margin-left: auto;
   margin-right: auto;
   
@@ -181,3 +169,18 @@ ul li a:hover,ul li a:focus{
   position:relative;
   z-index:5;
 }
+
+.fa-trash {
+  position: absolute; 
+  left: 85%; 
+  top: 80%;
+  color: #fff;
+  font-size:28px !important;
+}
+
+.fa-trash:hover {
+  color: #A51C30;
+}
+
+
+
