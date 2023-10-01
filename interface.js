@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </li>
       </div>`;
 
-      containerDiv.insertAdjacentHTML("beforeend", entryDetails);
+      containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
       document.getElementById("textbox").value = "";
     });
 
