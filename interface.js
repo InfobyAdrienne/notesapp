@@ -3,8 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   var entryBox = document.getElementById("textbox");
 
-  // random number for id of note
-  // var id = Math.floor(Math.random() * 100000000 + 1);
+  // generate random number for id of note
   const idGenerator = () =>{
     return Math.floor(Math.random() * 1000000)
 }
@@ -13,11 +12,23 @@ document.addEventListener("DOMContentLoaded", () => {
   var notesData = JSON.parse(localStorage.getItem("data")) || [];
 
   document.getElementById("add-note-button").addEventListener("click", newNote);
-
-  // if there are no notes send a message to user 
-  // TO-DO: create a pop up telling user to create a note 
+  
   if (notesData.length == 0) {
-    console.log("create your first note")
+    let containerDiv = document.querySelector("ul");
+    let notesContainer = document.createElement("li");
+      containerDiv.appendChild(notesContainer);
+    
+    let createNoteNotice = `
+    <div class="notes">
+    <li>
+      <a>
+        <p>
+        Get started by adding your first entry
+        </p>
+      </a>
+    </li>
+    </div>`;
+    containerDiv.insertAdjacentHTML("afterbegin", createNoteNotice);
   } else {
     showAllNotes();
   }
@@ -33,8 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     notesData.push(noteObject);
-
-    console.log(notesData)
 
     // Save the new note in localStorage
     localStorage.setItem("data", JSON.stringify(notesData));
@@ -91,53 +100,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // iterate over the array of elements to add an event to each one
     for (var i = 0; i < deleteIcons.length; i++) {
       deleteIcons[i].addEventListener("click", (event) => {
-        console.log(noteId);
         noteId.push(event.target.id)
-        console.log(noteId);
         noteId = Number(noteId.join(''));
-        console.log(noteId);
-        // deleteNote()
-        noteId = [];
+        deleteNote()
       });
-
-
     }
   };
 
   function deleteNote() {
-    console.log("clicked");
-    
-    console.log(noteId)
-
-    // TO-DO: the id of the clicked note can be found
-    // Need a way to getItem and removeItem from local storage using the found id 
-
     var notes = JSON.parse(localStorage.getItem("data"));
-
-    console.log(notes)
-
     var noteToDelete = notes.find(item => item.id === noteId);
-
-    console.log(noteToDelete)
-
     var index = notes.indexOf(noteToDelete);
-
-    console.log(index) 
-
-    //remove object with that index from array
-
     notes.splice(index, 1);
-
     localStorage.setItem('data', JSON.stringify(notes));
-
-    // showAllNotes()
-
     noteId = [];
-
-    console.log(notes)
-
-    // location.reload()
-
+    showAllNotes()
   }
-
 });
