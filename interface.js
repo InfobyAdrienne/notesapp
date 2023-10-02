@@ -12,25 +12,29 @@ document.addEventListener("DOMContentLoaded", () => {
   var notesData = JSON.parse(localStorage.getItem("data")) || [];
 
   document.getElementById("add-note-button").addEventListener("click", newNote);
-  
-  if (notesData.length == 0) {
-    let containerDiv = document.querySelector("ul");
-    let notesContainer = document.createElement("li");
+
+  createNoteNotice()
+
+  function createNoteNotice() {
+    if (notesData.length == 0) {
+      let containerDiv = document.querySelector("ul");
+      let notesContainer = document.createElement("li");
       containerDiv.appendChild(notesContainer);
     
-    let createNoteNotice = `
+      let createNoteNotice = `
     <div class="notes">
     <li>
       <a>
         <p>
-        Get started by adding your first entry
+        Get started by creating your first entry
         </p>
       </a>
     </li>
     </div>`;
-    containerDiv.insertAdjacentHTML("afterbegin", createNoteNotice);
-  } else {
-    showAllNotes();
+      containerDiv.insertAdjacentHTML("afterbegin", createNoteNotice);
+    } else {
+      showAllNotes();
+    }
   }
 
   // function for creating a new note, storing it to localStorage
