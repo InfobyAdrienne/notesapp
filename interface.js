@@ -39,44 +39,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Save the new note in localStorage
     localStorage.setItem("data", JSON.stringify(notesData));
 
-    displayNewNote();
+    // After a new note has been added to localStorage, show all notes 
+    showAllNotes();
   }
 
-  // After a new note has been added to localStorage,
-  // display the new note in addition to the already stored notes
-
-  
-  function displayNewNote() {
-    let notes = JSON.parse(localStorage.getItem("data"));
-
-    let lastElement = notes[notes.length - 1];
-
-    let containerDiv = document.querySelector("ul");
-    let notesContainer = document.createElement("li");
-    
-    containerDiv.appendChild(notesContainer);
-
-    let entryDetails = `
-    <div id="notes">
-    <li>
-        <a href="#">
-          <p id="single-sticky-note">
-          ${lastElement.value}
-          </p>
-          <i class="fa fa-trash" ${lastElement.id}></i>
-      </a>
-      </li>
-      </div>`;
-
-    containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
-    document.getElementById("textbox").value = "";
-
-    dynamicDeleteIcon()
-  }
-
+  function removeElementsByClass(){
+    const elements = document.getElementsByClassName("notes");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
 
   // Display all the notes from localStorage
   function showAllNotes() {
+    // remove already displayed notes from page 
+    removeElementsByClass();
+    
     let notes = JSON.parse(localStorage.getItem("data"));
 
     notes.forEach((element) => {
@@ -86,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       containerDiv.appendChild(notesContainer);
 
       let entryDetails = `
-      <div id="notes">
+      <div class="notes">
       <li>
         <a href="#">
           <p id="single-sticky-note">
@@ -113,20 +91,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // iterate over the array of elements to add an event to each one
     for (var i = 0; i < deleteIcons.length; i++) {
       deleteIcons[i].addEventListener("click", (event) => {
+        console.log(noteId);
         noteId.push(event.target.id)
         console.log(noteId);
-        deleteNote()
+        noteId = Number(noteId.join(''));
+        console.log(noteId);
+        // deleteNote()
+        noteId = [];
       });
+
+
     }
   };
-
-
 
   function deleteNote() {
     console.log("clicked");
     
-    noteId = Number(noteId.join(''));
-
     console.log(noteId)
 
     // TO-DO: the id of the clicked note can be found
@@ -150,11 +130,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     localStorage.setItem('data', JSON.stringify(notes));
 
-    showAllNotes()
+    // showAllNotes()
 
     noteId = [];
 
-    location.reload()
+    console.log(notes)
+
+    // location.reload()
 
   }
 
