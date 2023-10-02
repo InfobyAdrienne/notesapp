@@ -57,13 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
     containerDiv.appendChild(notesContainer);
 
     let entryDetails = `
-    <div id=${lastElement.id}>
+    <div id="notes">
     <li>
         <a href="#">
           <p id="single-sticky-note">
           ${lastElement.value}
           </p>
-          <i class="fa fa-trash"></i>
+          <i class="fa fa-trash" ${lastElement.id}></i>
       </a>
       </li>
       </div>`;
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Display all the notes from localStorage
   function showAllNotes() {
-    let notes = JSON.parse(localStorage.getItem("data")).reverse();
+    let notes = JSON.parse(localStorage.getItem("data"));
 
     notes.forEach((element) => {
 
