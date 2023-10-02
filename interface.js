@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <li>
         <a href="#">
           <p id="single-sticky-note">
-          ${element.value}
+          ${element.value.slice(0, 20)}...
           </p>
           <div>
           <i class="fa fa-trash" id=${element.id}></i>
