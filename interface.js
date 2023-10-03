@@ -118,6 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
     notes.splice(index, 1);
     localStorage.setItem('data', JSON.stringify(notes));
     noteId = [];
-    showAllNotes()
+
+    if (notes.length == 0) {
+      location.reload();
+    } else {
+      showAllNotes()
+    };
   }
 });
