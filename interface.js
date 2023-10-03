@@ -73,8 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
     notes.forEach((element) => {
 
       let containerDiv = document.querySelector("ul");
-      let notesContainer = document.createElement("li");
-      containerDiv.appendChild(notesContainer);
+      // let notesContainer = document.createElement("li");
+      // containerDiv.appendChild(notesContainer);
 
       let entryDetails = `
       <div class="notes">
