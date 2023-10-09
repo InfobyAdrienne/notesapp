@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head> 
+  <link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
   <title></title>
     <script src="src/NotesApp.js"></script>
     <script src="interface.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emojione@4.0.0/lib/js/emojione.min.js"></script>
+    <script>
+    window.onload = function(){
+        
+    var notes = JSON.parse(localStorage.getItem("data"));
+    // get the previously stored timestamp of the note you clicked on 
+    var notetocollect = JSON.parse(localStorage.getItem("notetocollect"));
+  
+    // find the item with that timestamp in localStorage
+    var noteToDisplay = notes.find(item => item.timestamp === notetocollect);
+
+    // find the index of that item to be able to extract its value from localStorage
+    var index = notes.indexOf(noteToDisplay);
+     
+    let containerDiv = document.querySelector("ul");
+
+    let entryDetails = `
+      <div class="notes">
+      <li>
+        <a id="single-sticky-note">
+          <p>
+          ${notes[index].value}
+          </p>
+          <div>
+          </div>
+        </a>
+      </li>
+      </div>`;
+
+      containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
+  };
+
+    </script>
   </head>
   <body>
-    
-    
-
-    <p>Full note should appear underneath here:</p>
+    <p>Showing the full note below:</p>
     <ul>
-      <l id=full-note></li>
+      <l id="full-note"></li>
     </ul>
 
 </body>
