@@ -79,9 +79,9 @@ document.addEventListener("DOMContentLoaded", () => {
       let entryDetails = `
       <div class="notes">
       <li>
-        <a id="single-sticky-note">
+        <a class="single-sticky-note" id=${element.timestamp}>
           <p>
-          ${element.value.slice(0, 20)}...
+          ${element.value.slice(0, 16)}...
           </p>
           <div>
           <i class="fa fa-trash" id=${element.id}></i>
@@ -95,13 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     dynamicDeleteIcon()
-  }
-
-  document.getElementById("single-sticky-note").addEventListener("click", loadNewPage);
-
-// when a sticky note is clicked, the full not is shown on a seperate page with details about the entry 
-  function loadNewPage() {
-    window.location.href = "full-note-display.html";
+    dynamicSelectIcon()
   }
 
   var noteId = [];
@@ -131,5 +125,25 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       showAllNotes()
     };
+  }
+
+  var noteTimestamp = []
+
+  function dynamicSelectIcon() {
+    var selectIcons = document.getElementsByClassName("single-sticky-note")
+  // iterate over the array of elements to add an event to each one
+    for (var i = 0; i < selectIcons.length; i++) {
+      selectIcons[i].addEventListener("click", (event) => {
+        noteTimestamp.push(event.target.id)
+        noteTimestamp = Number(noteTimestamp.join(''));
+  // Save timestamp of note to localStorage
+        localStorage.setItem("notetocollect", JSON.stringify(noteTimestamp));
+        loadNewPage();
+      });
+    }
+  };
+
+  function loadNewPage() {
+    window.location.href = "full-note-display.html";
   }
 });

@@ -9,34 +9,40 @@
     <script>
     window.onload = function(){
         
-    let notes = JSON.parse(localStorage.getItem("data"));
+    var notes = JSON.parse(localStorage.getItem("data"));
+    let notetocollect = JSON.parse(localStorage.getItem("notetocollect"));
+  
+    console.log(notetocollect);
+
+    var noteToDisplay = notes.find(item => item.timestamp === notetocollect);
+    var index = notes.indexOf(noteToDisplay);
+ 
+    console.log(index)
     
-    notes.forEach((element) => {
+    console.log(notes[index].value)
+    
+    let containerDiv = document.querySelector("ul");
 
-      let containerDiv = document.querySelector("ul");
-
-      let entryDetails = `
+    let entryDetails = `
       <div class="notes">
       <li>
         <a id="single-sticky-note">
           <p>
-          ${element.value}
+          ${notes[index].value}
           </p>
           <div>
-          <i class="fa fa-trash" id=${element.id}></i>
           </div>
         </a>
       </li>
       </div>`;
 
       containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
-    });
   };
 
     </script>
   </head>
   <body>
-    <p>Full note should appear underneath here:</p>
+    <p>Showing the full note below:</p>
     <ul>
       <l id="full-note"></li>
     </ul>
