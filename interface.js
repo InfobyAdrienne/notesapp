@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
       let entryDetails = `
       <div class="notes">
       <li>
-        <a href="#">
-          <p id="single-sticky-note">
+        <a id="single-sticky-note">
+          <p>
           ${element.value.slice(0, 20)}...
           </p>
           <div>
@@ -95,6 +95,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     dynamicDeleteIcon()
+  }
+
+  document.getElementById("single-sticky-note").addEventListener("click", loadNewPage);
+
+// when a sticky note is clicked, the full not is shown on a seperate page with details about the entry 
+  function loadNewPage() {
+    window.location.href = "full-note-display.html";
   }
 
   var noteId = [];

@@ -1,18 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head> 
+  <link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
   <title></title>
     <script src="src/NotesApp.js"></script>
     <script src="interface.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emojione@4.0.0/lib/js/emojione.min.js"></script>
+    <script>
+    window.onload = function(){
+        
+    let notes = JSON.parse(localStorage.getItem("data"));
+    
+    notes.forEach((element) => {
+
+      let containerDiv = document.querySelector("ul");
+
+      let entryDetails = `
+      <div class="notes">
+      <li>
+        <a id="single-sticky-note">
+          <p>
+          ${element.value}
+          </p>
+          <div>
+          <i class="fa fa-trash" id=${element.id}></i>
+          </div>
+        </a>
+      </li>
+      </div>`;
+
+      containerDiv.insertAdjacentHTML("afterbegin", entryDetails);
+    });
+  };
+
+    </script>
   </head>
   <body>
-    
-    
-
     <p>Full note should appear underneath here:</p>
     <ul>
-      <l id=full-note></li>
+      <l id="full-note"></li>
     </ul>
 
 </body>
