@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
       let entryDetails = `
       <div class="notes">
       <li>
-        <a class="single-sticky-note" id=${element.timestamp}>
-          <p>
+        <a>
+          <p class="single-sticky-note" id=${element.timestamp}>
         ${notecontents}
           </p>
           <div>
